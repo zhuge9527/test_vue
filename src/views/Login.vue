@@ -35,6 +35,8 @@ export default {
     loginIn: function () {
       if (this.username && this.password) {
         this.$router.push('/home')
+      } else {
+        throw new Error('213')
       }
     }
   }

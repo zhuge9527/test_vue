@@ -45,7 +45,10 @@ export default {
 
 <style>
 #login {
-  margin-top: 300px;
+  padding: 300px 50px 0;
+  margin: 0 auto;
+  width: 600px;
+  height: 100%;
 }
 
 #login h1 {

@@ -32,7 +32,7 @@ export default {
 }
 
 body {
-  background-color: #86baee;
+  /*background-color: #fae6c0;*/
   height: 100%;
   margin: 0 20px;
 }

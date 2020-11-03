@@ -1,18 +1,21 @@
 <template>
   <div id="home">
-    <Menu></Menu>
-    <Content></Content>
+    <Menu class="menu"></Menu>
+    <MainContent class="menu"></MainContent>
   </div>
 </template>
 
 <script>
 import Menu from './Menu'
+import MainContent from './Content'
 export default {
   name: 'Home',
-  components: {Menu}
+  components: {Menu, MainContent}
 }
 </script>
 
 <style scoped>
-
+#home {
+  flex: content;
+}
 </style>

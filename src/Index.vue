@@ -55,8 +55,8 @@
             <template slot="title"><i class="el-icon-setting"></i>Test</template>
             <el-menu-item index="/pageA">pageA</el-menu-item>
             <el-menu-item index="/pageB">pageB</el-menu-item>
-            <el-menu-item index="/test/pageA/abc">/test/pageA/abc</el-menu-item>
-            <el-menu-item index="/test/pageB/abc">/test/pageB/abc</el-menu-item>
+            <el-menu-item index="/index/pageA/abc">/index/pageA/abc</el-menu-item>
+            <el-menu-item index="/index/pageB/abc">/index/pageB/abc</el-menu-item>
           </el-submenu>
         </el-menu>
       </el-aside>

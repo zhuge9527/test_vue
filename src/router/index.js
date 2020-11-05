@@ -19,7 +19,14 @@ export default new Router({
     {
       path: '/index',
       name: 'Index',
-      component: Index
+      component: Index,
+      children: [{
+        path: 'pageA/:id',
+        component: PageA
+      }, {
+        path: 'pageA',
+        component: PageA
+      }]
     },
     {
       path: '/index2',

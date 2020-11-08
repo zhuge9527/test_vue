@@ -6,14 +6,14 @@
 </template>
 
 <script>
-const PageA = {
+export default {
   name: 'PageA',
   beforeRouteEnter (to, form, next) {
     debugger
     next()
   },
   watch: {
-    $router (router) {
+    $route (router) {
       debugger
       return router
     }
@@ -25,7 +25,6 @@ const PageA = {
   //   return createElement('h' + 2, {text: 'ABC'})
   // }
 }
-export default PageA
 </script>
 
 <style scoped>

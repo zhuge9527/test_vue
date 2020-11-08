@@ -1,8 +1,14 @@
 <template>
-  <div id="app"
-       v-bind:style="{width: pageWidth, height: pageHeight}">
-    <!--    <img src="./assets/logo.png">-->
+  <div id="app">
     <router-view/>
+    <el-alert id="elementUIAlertMessageBox"
+              style="display:none;"
+              :title="alertTitle"
+              :type="alertType"
+              :description="'账号或密码错误'"
+              center
+              show-icon>
+    </el-alert>
   </div>
 </template>
 
@@ -11,13 +17,9 @@ export default {
   name: 'App',
   data: function () {
     return {
-      pageWidth: '100%' || window.innerWidth + 'px',
-      pageHeight: '100%' || window.innerHeight + 'px'
+      alertTitle: '提示信息',
+      alertType: 'error'
     }
-  // },
-  // computed: {
-  //   pageWidth: window.innerWidth,
-  //   pageHeight: window.innerHeight
   }
 }
 </script>
@@ -32,7 +34,6 @@ export default {
 }
 
 body {
-  /*background-color: #fae6c0;*/
   height: 100%;
   margin: 0 20px;
 }

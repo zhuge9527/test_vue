@@ -92,7 +92,7 @@
         </el-header>
 
         <el-main>
-          <router-view></router-view>
+          <router-view name="slot2"></router-view>
           <el-row class="main-container-top-button">
             <el-button type="primary" size="small">Add</el-button>
             <el-button type="danger" size="small">Remove</el-button>
@@ -145,11 +145,11 @@ export default {
       tableData: Array(20).fill(item)
     }
   },
-  beforeRouteUpdate (to, form) {
-    debugger
-    this.next()
-  },
   watch: {
+    $route (router) {
+      debugger
+      return router
+    },
     $router (router) {
       debugger
       return router

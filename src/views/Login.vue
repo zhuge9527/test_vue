@@ -33,10 +33,14 @@ export default {
   },
   methods: {
     loginIn: function () {
-      if (this.username && this.password) {
-        this.$router.push('/home')
+      if (this.username === 'admin' && this.password === '000000') {
+        this.$router.push('/index')
       } else {
-        throw new Error('213')
+        let alertMessageBox = document.getElementById('elementUIAlertMessageBox')
+        alertMessageBox.style.display = 'inline'
+        setTimeout(() => {
+          alertMessageBox.style.display = 'none'
+        }, 2000)
       }
     }
   }

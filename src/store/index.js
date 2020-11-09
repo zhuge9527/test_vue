@@ -10,9 +10,8 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    loginIn (state) {
-      debugger
-      this.username = state.userInfo.username
+    loginIn (state, username) {
+      state.userInfo.username = username
     }
   }
 })

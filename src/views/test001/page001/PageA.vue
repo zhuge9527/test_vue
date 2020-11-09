@@ -7,13 +7,7 @@
 
 <script>
 export default {
-  name: 'PageA',
-  watch: {
-    $route (router) {
-      debugger
-      return router
-    }
-  }
+  name: 'PageA'
   // render (createElement, context) {
   //   // for (let i = 1; i < 6; i++) {
   //   //   createElement('h' + i, {text: 'ABC'})

@@ -144,12 +144,6 @@ export default {
       ],
       tableData: Array(20).fill(item)
     }
-  },
-  watch: {
-    $route (router) {
-      debugger
-      return router
-    }
   }
 }
 </script>

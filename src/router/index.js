@@ -42,10 +42,6 @@ export default new Router({
     path: '/pageB',
     name: PageB,
     component: PageB
-  }, {
-    path: '/pageA',
-    name: PageA,
-    component: PageA
   }],
   watch: {
     $router (router) {

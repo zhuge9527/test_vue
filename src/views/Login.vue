@@ -47,6 +47,9 @@ window.onload = rain
 function rain () {
   // 获取canvas元素
   let canvasEl = document.getElementById('canvas')
+  if (!canvasEl) {
+    return
+  }
   let ctx = canvasEl.getContext('2d')
   // canvas画布的 背景颜色
   let backgroundColor = '#000'
@@ -395,14 +398,15 @@ export default {
   },
   methods: {
     loginIn: function () {
-      if (this.username === 'admin' && this.password === '000000') {
+      if (this.password === '000000') {
+        this.$store.commit('loginIn', this.username)
         this.$router.push('/index')
       } else {
-        let alertMessageBox = document.getElementById('elementUIAlertMessageBox')
-        alertMessageBox.style.display = 'inline'
-        setTimeout(() => {
-          alertMessageBox.style.display = 'none'
-        }, 2000)
+        // let alertMessageBox = document.getElementById('elementUIAlertMessageBox')
+        // alertMessageBox.style.display = 'inline'
+        // setTimeout(() => {
+        //   alertMessageBox.style.display = 'none'
+        // }, 2000)
       }
     },
     loginUp () {

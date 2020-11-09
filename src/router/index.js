@@ -42,15 +42,5 @@ export default new Router({
     path: '/pageB',
     name: PageB,
     component: PageB
-  }],
-  watch: {
-    $router (router) {
-      debugger
-      return router
-    },
-    $route (router) {
-      debugger
-      return router
-    }
-  }
+  }]
 })

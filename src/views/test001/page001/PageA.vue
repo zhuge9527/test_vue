@@ -8,10 +8,6 @@
 <script>
 export default {
   name: 'PageA',
-  beforeRouteEnter (to, form, next) {
-    debugger
-    next()
-  },
   watch: {
     $route (router) {
       debugger

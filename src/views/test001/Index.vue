@@ -92,7 +92,7 @@
         </el-header>
 
         <el-main>
-          <router-view name="slot2"></router-view>
+          <router-view></router-view>
           <el-row class="main-container-top-button">
             <el-button type="primary" size="small">Add</el-button>
             <el-button type="danger" size="small">Remove</el-button>
@@ -147,10 +147,6 @@ export default {
   },
   watch: {
     $route (router) {
-      debugger
-      return router
-    },
-    $router (router) {
       debugger
       return router
     }

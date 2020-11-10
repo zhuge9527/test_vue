@@ -7,6 +7,7 @@ import Index from '../views/test001/Index'
 import Index2 from '../views/test002/Index2'
 import PageA from '../views/test001/page001/PageA'
 import PageB from '../views/test001/page002/PageB'
+import NavigateMainView from '../views/NavigateMainView'
 
 Vue.use(Router)
 
@@ -18,6 +19,9 @@ export default new Router({
     path: '/home',
     name: 'Home',
     component: Home
+  }, {
+    path: '/nav-view',
+    component: NavigateMainView
   }, {
     path: '/login',
     name: 'Login',

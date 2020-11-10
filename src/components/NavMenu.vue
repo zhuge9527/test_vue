@@ -1,6 +1,6 @@
 <template>
-  <el-row class="tac">
-    <el-col v-if='color' :span="24">
+  <el-row style="height: 100%" class="tac">
+    <el-col style="height: 100%" v-if='color' :span="24">
       <h5 hidden>默认颜色</h5>
       <el-menu default-active="2"
         class="el-menu-vertical-demo"
@@ -36,7 +36,7 @@
         </el-menu-item>
       </el-menu>
     </el-col>
-    <el-col v-if='color2' :span="24">
+    <el-col style="height: 100%" v-else :span="24">
       <h5 hidden>自定义颜色</h5>
       <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
@@ -98,3 +98,8 @@ export default {
   }
 }
 </script>
+<style>
+.el-menu-vertical-demo {
+  height: 100%;
+}
+</style>

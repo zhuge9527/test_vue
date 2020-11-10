@@ -400,7 +400,7 @@ export default {
     loginIn: function () {
       if (this.password === '000000') {
         this.$store.commit('loginIn', this.username)
-        this.$router.push('/index')
+        this.$router.push('/nav-view')
       } else {
         // let alertMessageBox = document.getElementById('elementUIAlertMessageBox')
         // alertMessageBox.style.display = 'inline'

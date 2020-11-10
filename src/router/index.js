@@ -31,8 +31,49 @@ export default new Router({
     name: 'Index',
     component: Index,
     children: [{
-      path: 'pageA/:id',
+      path: 'pageA',
       component: PageA
+    }, {
+      path: 'render/pageA2',
+      component: Vue.component('PageA2', {
+        render (createElement, context) {
+          return createElement(
+            'div', [
+              'pageA2 Text',
+              createElement(
+                'routerView', {attrs: {name: 'default'}}
+              ), createElement(
+                'router-view', {attrs: {name: 'view2'}}
+              )
+            ],
+            {innerText: 'ere'})
+        }
+      }),
+      children: [{
+        path: 'third',
+        components: {
+          default: Vue.component('pageA-children-default', {
+            render (createElement, context) {
+              return createElement('h' + 2, 'default.h2')
+            }
+          }),
+          'view2': Vue.component('pageA-children-view2', {
+            render (createElement, context) {
+              return createElement('h' + 2, 'view2.h2')
+            }
+          })
+        }
+      }]
+    }, {
+      path: 'pageA/:param1',
+      component: PageA
+    }, {
+      path: '*',
+      component: Vue.component('page-404', {
+        render (createElement, context) {
+          return createElement('span', '404')
+        }
+      })
     }]
   }, {
     path: '/index2',

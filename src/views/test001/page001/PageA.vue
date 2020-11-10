@@ -1,19 +1,35 @@
 <template>
   <div>
-    <h1>ABC</h1>
-    <div id="page-a"></div>
+    <h2 v-if="notMatched">Template.h2</h2>
+    <h3 v-else>{{matchParam[Object.keys(matchParam)[0]]}}</h3>
+    <router-view></router-view>
+    <router-view name="view2"></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PageA'
-  // render (createElement, context) {
-  //   // for (let i = 1; i < 6; i++) {
-  //   //   createElement('h' + i, {text: 'ABC'})
-  //   // }
-  //   return createElement('h' + 2, {text: 'ABC'})
-  // }
+  name: 'PageA',
+  // data () {
+  //   return {
+  //     matchParam: {},
+  //     notMatched: true
+  //   }
+  // },
+  computed: {
+    matchParam () {
+      return this.$route.params
+    },
+    notMatched () {
+      return Object.keys(this.$route.params).length === 0
+    }
+  // },
+  // watch: {
+  //   $route () {
+  //     this.matchParam = this.$route.params
+  //     this.notMatched = Object.keys(this.$route.params).length === 0
+  //   }
+  }
 }
 </script>
 

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Vue With Single Page</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      color: #eee;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    #main {
+      height: 100%;
+    }
+
+    .container-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    #app-2 {
+      width: 60%;
+      height: 40%;
+      overflow: visible;
+      box-shadow: #42b983 0 0 10px;
+      border-radius: 6px;
+      padding: 10px 20px;
+    }
+
+    .container-item.multi-select {
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .container-item-cell {
+      line-height: 20px;
+      color: #eee;
+      background-color: #0025ff78;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .my-title {
+      position: absolute;
+      /*max-width: 200px;*/
+      min-width: 100px;
+      line-height: 18px;
+      font-size: 16px;
+    }
+
+    .my-title-icon {
+      position: relative;
+      top: 5px;
+      left: 30px;
+      transform: rotate(-45deg);
+      border: 1px solid #42b983;
+      background-color: #42b983;
+      width: 10px;
+      height: 10px;
+      margin: 0;
+    }
+
+    .my-title-content {
+      border: 1px solid #42b983;
+      border-radius: 2px;
+      box-shadow: #B3C0D1 0 0 5px inset;
+      background-color: #42b983;
+      z-index: 100;
+      padding: 2px 6px;
+    }
+  </style>
+</head>
+<body>
+<div id="main">
+  <div class="container-center">
+    <div id="app-2">
+      <multi-select-picker :item="item" v-for="item in listData" v-bind:key="item.code"></multi-select-picker>
+      <span v-bind:title="message">
+        鼠标悬停几秒钟查看此处动态绑定的提示信息！
+      </span>
+      <my-title v-show="showTitle" ref="myTitle"></my-title>
+    </div>
+  </div>
+</div>
+<script>
+  let myTitleComponent = Vue.component('my-title', {
+    template: `
+      <div class="my-title" :style="{top: position.top + 'px', left: position.left + 'px'}">
+      <div class="my-title-icon"></div>
+      <div class="my-title-content" v-html="text"></div>
+      </div>`,
+    data () {
+      return {
+        position: {
+          top: '10', left: '10'
+        },
+        text: '23456678'
+      }
+    }
+  })
+  let containerItemCell = Vue.component('item-cell', {
+    template: `
+      <component
+        :is="tagName"
+        class="container-item-cell"
+        :style="{width: item.width}"
+        @mouseover="showMyTitle"
+        @mouseout="hideMyTitle"
+      >
+      {{ item.value }}
+      </component>`,
+    props: {item: Object},
+    computed: {
+      tagName () {
+        return this.item.tagName || 'div'
+      }
+    },
+    methods: {
+      showMyTitle () {
+        this.$root.showTitle = true
+        let title = this.$root.$refs.myTitle
+        title.text = this.$el.innerHTML
+        title.position = {
+          top: this.$el.offsetTop + this.$el.offsetHeight,
+          left: this.$el.offsetLeft
+        }
+      },
+      hideMyTitle () {
+        this.$root.showTitle = false
+      }
+    }
+  })
+  let MultiListPicker = Vue.component('multi-select-picker', {
+    template:
+        `
+      <div class="container-item multi-select">
+      <item-cell :item="{width: '10%', value:item.type}"></item-cell>
+      <item-cell :item="{width: '10%', value:item.code}"></item-cell>
+      <item-cell :item="{width: '30%', value:item.name}"></item-cell>
+      <item-cell :item="{width: '47%', value:item.address, tagName: 'address'}"></item-cell>
+      </div>`,
+    props: ['item'],
+    components: {containerItemCell,}
+  })
+  let app2 = new Vue({
+    el: '#app-2',
+    components: {MultiListPicker, myTitleComponent},
+    data: {
+      message: '页面加载于 ' + new Date().toLocaleString(),
+      showTitle: true,
+      listData: [
+        {
+          type: 'aaaaaaaaaaaa',
+          name: 'bbbbbbbbbbbbbbbbbbbbbb',
+          code: '1',
+          address: 'ddddddddddddddddddddddddddddddddddddddddddddddd'
+        },
+        {
+          type: 'aaaaaaaaaaaa',
+          name: 'bbbbbbbbbbbbbbbbbbbbbb',
+          code: '2',
+          address: 'ddddddddddddddddddddddddddddddddddddddddddddddd'
+        },
+        {
+          type: 'aaaaaaaaaaaa',
+          name: 'bbbbbbbbbbbbbbbbbbbbbb',
+          code: '3',
+          address: 'ddddddddddddddddddddddddddddddddddddddddddddddd'
+        },
+        {
+          type: 'aaaaaaaaaaaa',
+          name: 'bbbbbbbbbbbbbbbbbbbbbb',
+          code: '4',
+          address: 'ddddddddddddddddddddddddddddddddddddddddddddddd'
+        },
+        {
+          type: 'aaaaaaaaaaaa',
+          name: 'bbbbbbbbbbbbbbbbbbbbbb',
+          code: '5',
+          address: 'ddddddddddddddddddddddddddddddddddddddddddddddd'
+        }
+      ]
+    }
+  })
+</script>
+</body>
+</html>

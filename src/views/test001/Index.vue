@@ -54,11 +54,11 @@
         </el-submenu>
         <el-submenu index="4">
           <template slot="title"><i class="el-icon-setting"></i>Index</template>
-          <el-menu-item index="/index/pageA">PageA</el-menu-item>
-          <el-menu-item index="/index/pageA/param(131)">PageA-abc</el-menu-item>
-          <el-menu-item index="/index/render/pageA2/third">render-third-view</el-menu-item>
-          <el-menu-item index="/pageB">pageB</el-menu-item>
-          <el-menu-item index="/index/pageB/abc">PageB/abc</el-menu-item>
+          <el-menu-item index="/index/pageA">/index/pageA</el-menu-item>
+          <el-menu-item index="/index/pageA/param(131)">/index/pageA/param(131)</el-menu-item>
+          <el-menu-item index="/index/render/pageA2/third">/index/render/pageA2/third</el-menu-item>
+          <el-menu-item index="/pageB">/pageB</el-menu-item>
+          <el-menu-item index="/index/pageB/abc">/index/pageB/abc</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-aside>

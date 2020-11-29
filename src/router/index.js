@@ -10,82 +10,104 @@ import PageB from '../views/test001/page002/PageB'
 import NavigateMainView from '../views/NavigateMainView'
 
 Vue.use(Router)
-
-export default new Router({
-  routes: [{
-    path: '/',
-    redirect: '/login'
+const specialRoutes = [{
+  path: '/hello/world',
+  name: 'HelloWorld',
+  component: HelloWorld
+}]
+const baseRoutes = [{
+  path: '/home',
+  name: 'Home',
+  component: Home
+}, {
+  path: '/login',
+  name: 'Login',
+  component: Login
+}, {
+  path: '/',
+  redirect: '/login'
+}]
+const indexRoutes = [{
+  path: '/index',
+  name: 'Index',
+  component: Index,
+  children: [{
+    path: 'pageA',
+    component: PageA
   }, {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  }, {
-    path: '/nav-view',
-    component: NavigateMainView
-  }, {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  }, {
-    path: '/hello/world',
-    name: 'HelloWorld',
-    component: HelloWorld
-  }, {
-    path: '/index',
-    name: 'Index',
-    component: Index,
+    path: 'render/pageA2',
+    component: Vue.component('PageA2', {
+      render (createElement, context) {
+        return createElement(
+          'div', [
+            'pageA2 Text',
+            createElement(
+              'routerView', {attrs: {name: 'default'}}
+            ), createElement(
+              'router-view', {attrs: {name: 'view2'}}
+            )
+          ],
+          {innerText: 'ere'})
+      }
+    }),
     children: [{
-      path: 'pageA',
-      component: PageA
+      path: 'third',
+      components: {
+        default: Vue.component('pageA-children-default', {
+          render (createElement, context) {
+            return createElement('h' + 2, 'default.h2')
+          }
+        }),
+        'view2': Vue.component('pageA-children-view2', {
+          render (createElement, context) {
+            return createElement('h' + 2, 'view2.h2')
+          }
+        })
+      }
+    }]
+  }, {
+    path: 'pageA/:param1',
+    component: PageA
+  }, {
+    path: '*',
+    component: Vue.component('page-404', {
+      render (createElement, context) {
+        return createElement('span', '404')
+      }
+    })
+  }]
+}]
+let myRouter = new Router({
+  routes: [
+    ...baseRoutes,
+    ...specialRoutes,
+    ...indexRoutes,
+    {
+      path: '/nav-view',
+      component: NavigateMainView
     }, {
-      path: 'render/pageA2',
-      component: Vue.component('PageA2', {
-        render (createElement, context) {
-          return createElement(
-            'div', [
-              'pageA2 Text',
-              createElement(
-                'routerView', {attrs: {name: 'default'}}
-              ), createElement(
-                'router-view', {attrs: {name: 'view2'}}
-              )
-            ],
-            {innerText: 'ere'})
-        }
-      }),
-      children: [{
-        path: 'third',
-        components: {
-          default: Vue.component('pageA-children-default', {
-            render (createElement, context) {
-              return createElement('h' + 2, 'default.h2')
-            }
-          }),
-          'view2': Vue.component('pageA-children-view2', {
-            render (createElement, context) {
-              return createElement('h' + 2, 'view2.h2')
-            }
-          })
-        }
-      }]
+      path: '/index2',
+      name: 'Index2',
+      component: Index2
     }, {
-      path: 'pageA/:param1',
-      component: PageA
+      path: '/pageB',
+      name: PageB,
+      component: PageB
     }, {
       path: '*',
-      component: Vue.component('page-404', {
-        render (createElement, context) {
-          return createElement('span', '404')
+      component: Vue.component('page404', {
+        render (h) {
+          return h('span', 'Don\'t Match Current Page(404)')
         }
       })
     }]
-  }, {
-    path: '/index2',
-    name: 'Index2',
-    component: Index2
-  }, {
-    path: '/pageB',
-    name: PageB,
-    component: PageB
-  }]
+})
+export default myRouter
+myRouter.beforeEach((to, from, next) => {
+  if (location.href.indexOf('.html') > -1) {
+    debugger
+    // location.replace('http://localhost:8080/singlepageview/Page1.html')
+    window.open('http://localhost:8080/singlepageview/Page1.html')
+  }
+  next()
 })

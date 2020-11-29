@@ -59,17 +59,28 @@
       line-height: 18px;
       font-size: 16px;
     }
-
     .my-title-icon {
-      position: relative;
-      top: 5px;
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: -6px;
       left: 30px;
-      transform: rotate(-45deg);
-      border: 1px solid #42b983;
-      background-color: #42b983;
-      width: 10px;
-      height: 10px;
-      margin: 0;
+      border-style: solid;
+      border-width: 6px;
+      border-top-width: 0;
+      border-color: transparent;
+      border-bottom-color: tomato;
+    }
+    .my-title-icon:after {
+      content: " ";
+      position: absolute;
+      top: 1px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent;
+      border-top-width: 0;
+      border-bottom-color: thistle;
+      margin-left: -6px;
     }
 
     .my-title-content {

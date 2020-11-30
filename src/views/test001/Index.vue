@@ -54,6 +54,7 @@
         </el-submenu>
         <el-submenu index="4">
           <template slot="title"><i class="el-icon-setting"></i>Index</template>
+          <el-menu-item index="/index/supplier/search">Supplier Search Page</el-menu-item>
           <el-menu-item index="/index/pageA">/index/pageA</el-menu-item>
           <el-menu-item index="/index/pageA/param(131)">/index/pageA/param(131)</el-menu-item>
           <el-menu-item index="/index/render/pageA2/third">/index/render/pageA2/third</el-menu-item>
@@ -95,20 +96,20 @@
 
       <el-main>
         <router-view></router-view>
-        <el-row class="main-container-top-button">
-          <el-button type="primary" size="small">Add</el-button>
-          <el-button type="danger" size="small">Remove</el-button>
-          <el-button type="warning" size="small">Copy</el-button>
-          <el-button type="success" size="small">Download</el-button>
-        </el-row>
-        <el-table :data="tableData">
-          <el-table-column prop="date" label="日期" width="140">
-          </el-table-column>
-          <el-table-column prop="name" label="姓名" width="120">
-          </el-table-column>
-          <el-table-column prop="address" label="地址">
-          </el-table-column>
-        </el-table>
+<!--        <el-row class="main-container-top-button">-->
+<!--          <el-button type="primary" size="small">Add</el-button>-->
+<!--          <el-button type="danger" size="small">Remove</el-button>-->
+<!--          <el-button type="warning" size="small">Copy</el-button>-->
+<!--          <el-button type="success" size="small">Download</el-button>-->
+<!--        </el-row>-->
+<!--        <el-table :data="tableData">-->
+<!--          <el-table-column prop="date" label="日期" width="140">-->
+<!--          </el-table-column>-->
+<!--          <el-table-column prop="name" label="姓名" width="120">-->
+<!--          </el-table-column>-->
+<!--          <el-table-column prop="address" label="地址">-->
+<!--          </el-table-column>-->
+<!--        </el-table>-->
       </el-main>
     </el-container>
   </el-container>

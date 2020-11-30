@@ -8,6 +8,7 @@ import Index2 from '../views/test002/Index2'
 import PageA from '../views/test001/page001/PageA'
 import PageB from '../views/test001/page002/PageB'
 import NavigateMainView from '../views/NavigateMainView'
+import SupplierSearchView from '../views/supplier/SupplierSearchView'
 
 Vue.use(Router)
 const specialRoutes = [{
@@ -32,6 +33,9 @@ const indexRoutes = [{
   name: 'Index',
   component: Index,
   children: [{
+    path: 'supplier/search',
+    component: SupplierSearchView
+  }, {
     path: 'pageA',
     component: PageA
   }, {

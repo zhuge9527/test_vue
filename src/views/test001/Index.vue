@@ -94,7 +94,7 @@
         </el-row>
       </el-header>
 
-      <el-main>
+      <el-main class="box-shadow-inset">
         <router-view></router-view>
 <!--        <el-row class="main-container-top-button">-->
 <!--          <el-button type="primary" size="small">Add</el-button>-->
@@ -128,6 +128,9 @@
 
 .main-container-top-button button {
   float: left;
+}
+.box-shadow-inset {
+  box-shadow: #b52b2bcc 0 0 30px 10px inset;
 }
 </style>
 

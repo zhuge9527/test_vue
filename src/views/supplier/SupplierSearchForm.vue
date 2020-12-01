@@ -28,7 +28,7 @@
       </el-col>
       <el-col :span="8">
         <el-form-item label="供应商负责人">
-          <el-input placeholder="Master" v-model="criteriaVo.master"></el-input>
+          <el-input v-model="criteriaVo.master"></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="8">
@@ -57,12 +57,10 @@ export default {
   },
   methods: {
     searchData () {
-      if (this.criteriaVo) {
-        return []
-      }
+      this.$parent.$parent.$parent.searchData()
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    resetForm () {
+      this.$el.reset()
     }
   }
 }

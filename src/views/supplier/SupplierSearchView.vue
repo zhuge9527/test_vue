@@ -1,8 +1,8 @@
 <template>
-  <el-container>
+  <el-container class="main-container">
     <el-main>
-      <supplier-search-form></supplier-search-form>
-      <supplier-search-table></supplier-search-table>
+      <supplier-search-form ref="searchForm"></supplier-search-form>
+      <supplier-search-table ref="resultTable"></supplier-search-table>
       <el-form style="display: none" ref="form" :model="form" label-width="80px">
         <el-form-item label="活动名称">
           <el-input v-model="form.name"></el-input>
@@ -75,10 +75,28 @@ export default {
   methods: {
     onSubmit () {
       console.log('submit!')
+    },
+    searchData: function () {
+      let criteriaVo = this.$refs.searchForm.criteriaVo
+      if (criteriaVo) {
+        this.$refs.resultTable.$forceUpdate()
+      }
     }
+  },
+  mounted: function () {
+    this.$on('searchData', function () {
+      debugger
+    })
+    this.$nextTick(function () {
+      // Code that will run only after the
+      // entire view has been rendered
+    })
   }
 }
 </script>
 
 <style scoped>
+.main-container {
+  height: 100%;
+}
 </style>

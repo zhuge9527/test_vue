@@ -1,9 +1,13 @@
 <template>
-  <el-container class="main-container">
-    <el-main>
-      <supplier-search-form ref="searchForm"></supplier-search-form>
-      <supplier-search-table ref="resultTable"></supplier-search-table>
-      <el-form style="display: none" ref="form" :model="form" label-width="80px">
+  <el-container class="main-container-outer">
+    <el-main class="main-container">
+      <supplier-search-form class="main-container-form" ref="searchForm"
+                            :style="'height:' + formHeight + '%'">
+      </supplier-search-form>
+      <supplier-search-table class="main-container-table" ref="resultTable"
+                             :tableHeight="tableHeight">
+      </supplier-search-table>
+      <el-form v-if="showOtherForm" style="display: none" ref="form" :model="form" label-width="80px">
         <el-form-item label="活动名称">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
@@ -60,6 +64,8 @@ export default {
   components: {SupplierSearchForm, SupplierSearchTable},
   data () {
     return {
+      showOtherForm: false,
+      formHeight: 18,
       form: {
         name: '',
         region: '',
@@ -70,6 +76,11 @@ export default {
         resource: '',
         desc: ''
       }
+    }
+  },
+  computed: {
+    tableHeight () {
+      return 100 - this.formHeight
     }
   },
   methods: {
@@ -96,7 +107,15 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
+.main-container-outer {
   height: 100%;
 }
+
+/*.main-container-form {*/
+/*  height: 18%;*/
+/*}*/
+
+/*.main-container-table {*/
+/*  height: 82%;*/
+/*}*/
 </style>

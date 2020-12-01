@@ -1,7 +1,7 @@
 <template>
   <el-table
     :data="tableData"
-    stripe border height="82%"
+    stripe border :height="tableHeight+'%'"
     style="width: 100%">
     <el-table-column prop="supplierName" label="供应商名称" minWidth="120"></el-table-column>
     <el-table-column prop="supplierCode" label="供应商名称" minWidth="120"></el-table-column>
@@ -63,6 +63,9 @@ export default {
         address: '上海市普陀区金沙江路 1516 弄'
       }]
     }
+  },
+  props: {
+    tableHeight: Number
   }
 }
 </script>

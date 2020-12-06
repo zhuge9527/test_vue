@@ -1,45 +1,43 @@
 <template>
-  <el-container style="flex-grow: 0; text-align: center">
-    <div id="snow-div-list"></div>
-    <el-header>
-      <h1>Welcome To My Website (Test Version)</h1>
-    </el-header>
-    <el-main class="login-view-main-form">
-      <el-row type="flex" justify="center">
-        <el-input
-          id="loginUsernameInput"
-          placeholder="请输入用户名"
-          v-model="username"
-          maxlength="20"
-          show-word-limit
-          clearable>
-        </el-input>
-      </el-row>
-      <el-row type="flex" justify="center">
-        <el-input
-          placeholder="请输入密码"
-          size="medium"
-          v-model="password"
-          show-password>
-        </el-input>
-      </el-row>
-      <el-row type="flex" justify="space-around">
-        <el-col :span="7">
+  <div class="login-view-outer-container">
+    <el-container class="login-view-main-container">
+      <div id="snow-div-list"></div>
+      <el-header>
+        <h1>Welcome To My Website (Test Version)</h1>
+      </el-header>
+      <el-main class="login-view-main-form">
+        <el-row type="flex" justify="center">
+          <el-input
+            id="loginUsernameInput"
+            placeholder="请输入用户名"
+            v-model="username"
+            maxlength="20"
+            show-word-limit
+            clearable>
+          </el-input>
+        </el-row>
+        <el-row type="flex" justify="center">
+          <el-input
+            placeholder="请输入密码"
+            size="medium"
+            v-model="password"
+            show-password>
+          </el-input>
+        </el-row>
+        <el-row type="flex" justify="space-between">
           <el-button @click="loginUp">
             Login Up
           </el-button>
-        </el-col>
-        <el-col :span="7">
           <el-button type="primary" @click="loginIn">
             Login In
           </el-button>
-        </el-col>
-      </el-row>
-    </el-main>
-    <el-footer>
-      <span>The main technologies used in this project are: Vue, Vuex, Vue Router, ElementUI ...</span>
-    </el-footer>
-  </el-container>
+        </el-row>
+      </el-main>
+      <el-footer>
+        <span>The main technologies used in this project are: Vue, Vuex, Vue Router, ElementUI ...</span>
+      </el-footer>
+    </el-container>
+  </div>
 </template>
 
 <script>
@@ -84,24 +82,33 @@ export default {
 }
 </script>
 <style lang="scss">
+.login-view-outer-container {
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(ellipse at bottom, #5e6063 0%, #0e1744 100%);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-view-main-container {
+  text-align: center;
+}
+
 .login-view-main-form {
-  margin: 10% 0 30% 0;
-  height: 200px;
-  padding: 20px 140px;
+  min-height: 200px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
+
 .snow-div-list {
   position: fixed;
   left: 0;
   top: 0;
   filter: drop-shadow(0 0 10px white);
-}
-body {
-  height: 100vh;
-  background: radial-gradient(ellipse at bottom, #5e6063 0%, #0e1744 100%);
-  overflow: hidden;
 }
 
 @function random_range($min, $max) {

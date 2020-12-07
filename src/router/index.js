@@ -17,10 +17,6 @@ const specialRoutes = [{
   component: HelloWorld
 }]
 const baseRoutes = [{
-  path: '/home',
-  name: 'Home',
-  component: Home
-}, {
   path: '/login',
   name: 'Login',
   component: Login
@@ -81,11 +77,29 @@ const indexRoutes = [{
     })
   }]
 }]
+const homeRoutes = [{
+  path: '/home',
+  name: 'Home',
+  component: Home,
+  children: [{
+    path: 'supplier/search',
+    name: 'SupplierSearchView',
+    component: SupplierSearchView
+  }, {
+    path: '*',
+    component: Vue.component('page404', {
+      render (h) {
+        return h('span', 'Don\'t Match Current Page(404)')
+      }
+    })
+  }]
+}]
 let myRouter = new Router({
   routes: [
     ...baseRoutes,
     ...specialRoutes,
     ...indexRoutes,
+    ...homeRoutes,
     {
       path: '/nav-view',
       component: NavigateMainView

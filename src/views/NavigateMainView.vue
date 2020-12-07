@@ -26,6 +26,10 @@ export default {
         id: 'linkSpecial-1',
         to: 'Index',
         text: 'Index/PageA'
+      }, {
+        id: 'linkSpecial-2',
+        to: 'Home',
+        text: '/Home'
       }, ...routers]
     }
   },
@@ -43,10 +47,10 @@ export default {
 <style scoped>
 .main-container {
   box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  padding: 100px 200px;
+  height: 100vh;
+  width: 100vw;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   align-content: space-around;

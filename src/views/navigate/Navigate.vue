@@ -11,10 +11,7 @@
     <template v-for="route in routes">
       <template v-if="route.children && route.children.length > 0">
         <el-submenu :index="route.index" :key="route.index" class="el-submenu">
-          <template slot="title">
-            <i :class="route.iconClass"></i>
-            <span slot="title">{{ route.menuText }}</span>
-          </template>
+          <template slot="title"><i :class="route.iconClass"></i>{{ route.menuText }}</template>
           <template v-for="menuItem in route.children">
             <el-menu-item :index="'/home' + route.index + menuItem.index" :key="menuItem.index" class="el-menu-item">
               {{ menuItem.menuText }}
@@ -78,6 +75,8 @@ export default {
   methods: {
     handleSelect () {
       console.log('select element menu')
+      const title = arguments[2].$slots.default[0].text.trim()
+      this.$emit('setCurrentViewTitle', title)
     }
   }
 }

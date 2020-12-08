@@ -80,10 +80,16 @@ const indexRoutes = [{
 const homeRoutes = [{
   path: '/home',
   name: 'Home',
+  meta: {
+    text: '首页'
+  },
   component: Home,
   children: [{
     path: 'supplier/search',
     name: 'SupplierSearchView',
+    meta: {
+      text: '查询供应商资料'
+    },
     component: SupplierSearchView
   }, {
     path: '*',

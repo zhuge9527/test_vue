@@ -1,6 +1,5 @@
 <template>
-  <el-container class="main-container-outer">
-    <el-main class="main-container">
+  <el-main class="main-container">
       <supplier-search-form class="main-container-form" ref="searchForm"
                             :style="'height:' + formHeight + '%'">
       </supplier-search-form>
@@ -52,7 +51,6 @@
         </el-form-item>
       </el-form>
     </el-main>
-  </el-container>
 </template>
 
 <script>
@@ -107,15 +105,5 @@ export default {
 </script>
 
 <style scoped>
-.main-container-outer {
-  height: 100%;
-}
 
-/*.main-container-form {*/
-/*  height: 18%;*/
-/*}*/
-
-/*.main-container-table {*/
-/*  height: 82%;*/
-/*}*/
 </style>

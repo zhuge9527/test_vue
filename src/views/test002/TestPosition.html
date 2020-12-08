@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<style>
+  html, body, section {
+    height: 200vh;
+    width: 200vw;
+    /*margin: 0;*/
+    position: relative;
+  }
+  section {
+    position: static;
+  }
+  body>section>div {
+    background-color: #42b983;
+    height: 8vh;
+    width: 8vw;
+    padding: 1vh 1vw;
+    margin: 8px;
+  }
+  #item3 {
+    position: absolute; /*absolute; fixed; relative; static; sticky;*/
+    top: 10vh;
+    left: 10vw;
+  }
+
+</style>
+<body>
+  <section>
+    <div id="item1">1</div>
+    <div id="item2">2</div>
+    <div id="item3"><span>123</span></div>
+    <div id="item4">4</div>
+  </section>
+</body>
+</html>

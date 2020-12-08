@@ -96,7 +96,7 @@ export default {
   },
   mounted: function () {
     this.$on('searchData', function () {
-      debugger
+      // debugger
     })
     this.$nextTick(function () {
       // Code that will run only after the

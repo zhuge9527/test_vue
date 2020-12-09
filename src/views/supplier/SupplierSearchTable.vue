@@ -2,6 +2,8 @@
   <el-table
     :data="tableData"
     stripe border :height="tableHeight+'%'"
+    :highlight-current-row="true"
+    :header-row-style="headerRowStyle || tableStyle.headerRowStyle"
     style="width: 100%">
     <el-table-column prop="supplierName" label="供应商名称" minWidth="120"></el-table-column>
     <el-table-column prop="supplierCode" label="供应商名称" minWidth="120"></el-table-column>
@@ -29,6 +31,11 @@
 export default {
   data () {
     return {
+      tableStyle: {
+        headerRowStyle: {
+          'background-color': 'red'
+        }
+      },
       tableData: [...(function () {
         let data = []
         for (let i = 0; i < 30; i++) {
@@ -66,10 +73,13 @@ export default {
   },
   props: {
     tableHeight: Number
+  },
+  methods: {
+    headerRowStyle () {
+    }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

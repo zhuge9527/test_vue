@@ -32,9 +32,15 @@
         </el-form-item>
       </el-col>
       <el-col :span="8">
-        <el-form-item label-width="0" class="my-flex-end">
-          <el-button style="width: 100px;" icon="el-icon-refresh-left" type="default" @click="resetForm" size="small">重置</el-button>
-          <el-button style="width: 100px;" icon="el-icon-search" type="primary" @click="searchData" size="small">查询</el-button>
+        <el-form-item label-width="0" class="my-flex-end" style="display: flex;flex-wrap: nowrap;overflow: hidden;">
+          <el-row :gutter="20">
+            <el-col :span="12">
+              <el-button style="width: 100px;" icon="el-icon-refresh-left" type="default" @click="resetForm" size="small">重置</el-button>
+            </el-col>
+            <el-col :span="12">
+              <el-button style="width: 100px;" icon="el-icon-search" type="primary" @click="searchData" size="small">查询</el-button>
+            </el-col>
+          </el-row>
         </el-form-item>
       </el-col>
     </el-row>

@@ -50,13 +50,6 @@ export default {
   width: 100vw;
 }
 
-.el-header, .el-footer {
-  /*background-color: #b3c0d1;*/
-  color: #333;
-  text-align: center;
-  line-height: 60px;
-}
-
 .el-header {
   border-bottom: 1px solid #5e6063;
 }
@@ -65,30 +58,8 @@ export default {
   background-color: #b3c0d1;
 }
 
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  /*background-color: #E9EEF3;*/
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-
-body > .el-container {
-  margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
 .main-container-outer {
+  height: 100%;
   background-color: #E9EEF3;
 }
 </style>

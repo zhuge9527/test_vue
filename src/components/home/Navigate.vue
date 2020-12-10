@@ -2,7 +2,7 @@
   <el-menu
     id="navigate-menu"
     router
-    default-active="/home/supplier/search"
+    default-active="/home/supplier/create"
     @select="handleSelect"
     background-color="#545c64"
     text-color="#fff"
@@ -21,7 +21,7 @@
       </template>
       <template v-else>
         <el-menu-item :index="'/home' + route.index" :key="route.index" class="el-menu-item">
-          {{ route.menuText }}
+          <i :class="route.iconClass"></i>{{ route.menuText }}
         </el-menu-item>
       </template>
     </template>

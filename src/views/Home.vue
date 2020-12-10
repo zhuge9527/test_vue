@@ -22,7 +22,7 @@
 <script>
 import Menu from './Menu'
 import MainContent from './Content'
-import Navigate from './navigate/Navigate'
+import Navigate from '../components/home/Navigate'
 import MainViewHeader from '../components/home/MainViewHeader'
 
 export default {

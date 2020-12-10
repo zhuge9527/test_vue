@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userInfo: {
-      username: 'admin2'
+      username: 'admin2',
+      avatarPath: null
     }
   },
   mutations: {

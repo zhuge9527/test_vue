@@ -101,6 +101,7 @@ const homeRoutes = [{
     component: SupplierCreateView
   }, {
     path: '*',
+    name: '404',
     component: Vue.component('page404', {
       render (h) {
         return h('span', 'Don\'t Match Current Page(404)')

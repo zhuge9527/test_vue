@@ -28,8 +28,8 @@ export default {
         text: 'Index/PageA'
       }, {
         id: 'linkSpecial-2',
-        to: 'Home',
-        text: '/Home'
+        to: 'home',
+        text: '/home'
       }, ...routers]
     }
   },

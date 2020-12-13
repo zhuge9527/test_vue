@@ -40,6 +40,11 @@ export default {
     goBack () {
       console.log('go back')
     }
+  },
+  mounted () {
+    if (this.$route.matched.length < 2 || this.$route.matched[1].name === '404') {
+      this.$router.push('/home/supplier/search')
+    }
   }
 }
 </script>

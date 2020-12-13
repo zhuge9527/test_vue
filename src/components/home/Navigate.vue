@@ -2,7 +2,7 @@
   <el-menu
     id="navigate-menu"
     router
-    default-active="/home/supplier/create"
+    :default-active="currentActive"
     @select="handleSelect"
     background-color="#545c64"
     text-color="#fff"
@@ -70,6 +70,14 @@ export default {
         menuText: '权限管理',
         iconClass: 'el-icon-view'
       }]
+    }
+  },
+  computed: {
+    currentActive () {
+      if (this.$route.matched.length < 2 || this.$route.matched[1].name === '404') {
+        return '/home/supplier/search'
+      }
+      return this.$route.fullPath
     }
   },
   methods: {

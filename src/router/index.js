@@ -9,6 +9,7 @@ import PageA from '../views/test001/page001/PageA'
 import PageB from '../views/test001/page002/PageB'
 import NavigateMainView from '../views/NavigateMainView'
 import SupplierSearchView from '../views/supplier/SupplierSearchView'
+import SupplierCreateView from '../views/supplier/SupplierCreateView'
 
 Vue.use(Router)
 const specialRoutes = [{
@@ -91,6 +92,13 @@ const homeRoutes = [{
       text: '查询供应商资料'
     },
     component: SupplierSearchView
+  }, {
+    path: 'supplier/create',
+    name: 'SupplierCreateView',
+    meta: {
+      text: '创建供应商'
+    },
+    component: SupplierCreateView
   }, {
     path: '*',
     component: Vue.component('page404', {

@@ -1,6 +1,10 @@
 <template>
   <el-table
     :data="tableData"
+    v-loading="loading"
+    element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
     stripe border :height="tableHeight+'%'"
     :highlight-current-row="true"
     :header-row-style="headerRowStyle || tableStyle.headerRowStyle"
@@ -36,39 +40,8 @@ export default {
           'background-color': 'red'
         }
       },
-      tableData: [...(function () {
-        let data = []
-        for (let i = 0; i < 30; i++) {
-          let no = Math.floor(Math.random() * 1000000)
-          data.push({
-            supplierName: `Supplier ${no}`,
-            supplierCode: `${no}`,
-            supplierAddress: `梧桐路 ${no} 号`,
-            activeEndDate: new Date().toLocaleDateString(),
-            supplierMaster: `SupplierMater ${no}`,
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          })
-        }
-        return data
-      }()), {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }]
+      tableData: [],
+      loading: false
     }
   },
   props: {

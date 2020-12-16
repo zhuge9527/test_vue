@@ -1,6 +1,6 @@
 <template>
   <el-main class="main-container">
-    <supplier-search-form class="main-container-form" ref="searchForm"/>
+    <supplier-search-form class="main-container-form" ref="searchForm" @submit="searchData"/>
     <supplier-search-table class="main-container-table" ref="resultTable"/>
     <el-form v-if="showOtherForm" style="display: none" ref="form" :model="form" label-width="80px">
       <el-form-item label="活动名称">
@@ -76,21 +76,17 @@ export default {
     onSubmit () {
       console.log('submit!')
     },
-    searchData: function () {
-      let criteriaVo = this.$refs.searchForm.criteriaVo
-      if (criteriaVo) {
-        this.$refs.resultTable.$forceUpdate()
-      }
+    searchData: function (criteriaVo) {
+      this.$refs.resultTable.loading = true
+      this.$axios.post('/server/supplier/search', criteriaVo)
+        .then(res => {
+          this.$refs.resultTable.loading = false
+          this.$refs.resultTable.tableData = (res.data)
+        })
+        .catch(err => {
+          console.trace(err)
+        })
     }
-  },
-  mounted: function () {
-    this.$on('searchData', function () {
-      // debugger
-    })
-    this.$nextTick(function () {
-      // Code that will run only after the
-      // entire view has been rendered
-    })
   }
 }
 </script>

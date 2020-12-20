@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from 'axios'
+
 Vue.prototype.$axios = axios
 
 // Vue.config.productionTip = false
@@ -32,6 +33,25 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
-  template: '<App/>'
+  components: {App},
+  template: '<App/>',
+  created () {
+    const vm = this
+    axios.interceptors.response.use(res => {
+      // 如果是 404, 则跳转到登录页面
+      if (res.data && res.data.status === '404') {
+        vm.$confirm(
+          res.data.message + ' 登录信息失效，请重新登录',
+          '提示'
+        ).then(() => {
+          vm.$router.push('/login').then(r => console.log(r)) // 在这里做页面登出操作
+        }).catch(error => {
+          console.trace(error)
+        })
+        // return Promise.reject(new Error('登录信息失效，请重新登录'))
+      } else {
+        return res
+      }
+    })
+  }
 })

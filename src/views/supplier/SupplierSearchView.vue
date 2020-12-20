@@ -81,7 +81,11 @@ export default {
       this.$axios.post('/server/supplier/search', criteriaVo)
         .then(res => {
           this.$refs.resultTable.loading = false
-          this.$refs.resultTable.tableData = (res.data)
+          if (res.data.success) {
+            this.$refs.resultTable.tableData = res.data.data
+          } else {
+            this.$message.error(res.data.message)
+          }
         })
         .catch(err => {
           console.trace(err)

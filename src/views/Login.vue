@@ -6,32 +6,34 @@
         <h1>Welcome To My Website (Test Version)</h1>
       </el-header>
       <el-main class="login-view-main-form">
-        <el-row type="flex" justify="center">
-          <el-input
-            id="loginUsernameInput"
-            placeholder="请输入用户名"
-            v-model="username"
-            maxlength="20"
-            show-word-limit
-            clearable>
-          </el-input>
-        </el-row>
-        <el-row type="flex" justify="center">
-          <el-input
-            placeholder="请输入密码"
-            size="medium"
-            v-model="password"
-            show-password>
-          </el-input>
-        </el-row>
-        <el-row type="flex" justify="space-between">
-          <el-button @click="loginUp">
-            Login Up
-          </el-button>
-          <el-button type="primary" @click="loginIn">
-            Login In
-          </el-button>
-        </el-row>
+        <el-form ref="loginForm" :model="loginData">
+          <el-form-item required hide-required-asterisk prop="username">
+            <el-input
+              id="loginUsernameInput"
+              placeholder="请输入用户名"
+              v-model="loginData.username"
+              maxlength="20"
+              show-word-limit
+              clearable>
+            </el-input>
+          </el-form-item>
+          <el-form-item required hide-required-asterisk prop="password">
+            <el-input
+              placeholder="请输入密码"
+              size="medium"
+              v-model="loginData.password"
+              show-password>
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="loginUp">
+              Login Up
+            </el-button>
+            <el-button type="primary" @click="loginIn">
+              Login In
+            </el-button>
+          </el-form-item>
+        </el-form>
       </el-main>
       <el-footer>
         <span>The main technologies used in this project are: Vue, Vuex, Vue Router, ElementUI ...</span>
@@ -47,21 +49,58 @@ export default {
   name: 'Login',
   data: function () {
     return {
-      username: 'admin',
-      password: '000000'
+      loginData: {
+        username: localStorage.getItem('test_vue_last_username') || undefined,
+        password: undefined
+      }
     }
   },
-  methods: {
-    loginIn: function () {
-      if (this.password === '000000') {
-        this.$store.commit('loginIn', this.username)
-        this.$router.push('/nav-view')
-      } else {
-        this.$message.error('账号或密码错误!')
+  watch: {
+    'loginData.username': (() => {
+      let timeout
+      return (newValue) => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => {
+          localStorage.setItem('test_vue_last_username', newValue)
+        }, 2000)
       }
+    })()
+  },
+  methods: {
+    operateAfterValidate (callback) {
+      this.$refs.loginForm.validate(isValid => {
+        if (isValid) {
+          const formData = {
+            username: this.loginData.username,
+            password: this.loginData.password
+          }
+          callback(formData)
+        }
+      })
+    },
+    loginIn () {
+      this.operateAfterValidate(formData => {
+        this.$axios.post('/server/loginIn', formData).then(res => {
+          if (res.data.success) {
+            this.$store.commit('loginIn', this.loginData.username)
+            this.$router.push('/nav-view')
+          } else {
+            this.$message.error(res.data.message || '账号或密码错误!')
+          }
+        })
+      })
     },
     loginUp () {
-      this.$message.warning('抱歉，该功能尚未完成~')
+      this.operateAfterValidate(formData => {
+        this.$axios.post('/server/loginUp', formData).then(res => {
+          if (res.data.success) {
+            this.loginData.password = undefined
+            this.$message.success(res.data.message)
+          } else {
+            this.$message.error(res.data.message)
+          }
+        })
+      })
     }
   },
   mounted () {
@@ -98,6 +137,7 @@ export default {
 
 .login-view-main-form {
   min-height: 200px;
+  width: 320px;
   margin: auto;
   display: flex;
   flex-direction: column;

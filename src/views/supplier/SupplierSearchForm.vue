@@ -3,12 +3,12 @@
     <el-row :gutter="20">
       <el-col :span="8">
         <el-form-item label="供应商名称">
-          <el-input v-model="criteriaVo.supplierName"></el-input>
+          <el-input v-model="criteriaVo.name"></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="8">
         <el-form-item label="供应商代码">
-          <el-input v-model="criteriaVo.supplierCode"></el-input>
+          <el-input v-model="criteriaVo.code"></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="8">
@@ -53,8 +53,8 @@
 
 <script>
 const defaultCriteria = {
-  supplierName: 'Apple Office In ShangHai',
-  supplierCode: 'APPLE_CODE_A',
+  name: undefined,
+  code: undefined,
   address: undefined,
   active: true,
   master: undefined

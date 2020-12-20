@@ -9,25 +9,11 @@
     :highlight-current-row="true"
     :header-row-style="headerRowStyle || tableStyle.headerRowStyle"
     style="width: 100%">
-    <el-table-column prop="supplierName" label="供应商名称" minWidth="120"></el-table-column>
-    <el-table-column prop="supplierCode" label="供应商名称" minWidth="120"></el-table-column>
-    <el-table-column prop="supplierAddress" label="供应商地址" minWidth="120"></el-table-column>
-    <el-table-column prop="activeEndDate" label="有效期截止日期" minWidth="100"></el-table-column>
-    <el-table-column prop="supplierMaster" label="供应商负责人" minWidth="120"></el-table-column>
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
-    </el-table-column>
+    <el-table-column prop="name" label="供应商名称" minWidth="120"></el-table-column>
+    <el-table-column prop="code" label="供应商名称" minWidth="120"></el-table-column>
+    <el-table-column prop="address" label="供应商地址" minWidth="120"></el-table-column>
+    <el-table-column prop="master" label="供应商负责人" minWidth="120"></el-table-column>
+    <el-table-column prop="expire_date" label="有效期截止日期" minWidth="200"></el-table-column>
   </el-table>
 </template>
 

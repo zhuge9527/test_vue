@@ -81,10 +81,16 @@ export default {
       this.$axios.post('/server/supplier/search', criteriaVo)
         .then(res => {
           this.$refs.resultTable.loading = false
-          if (res.data.success) {
-            this.$refs.resultTable.tableData = res.data.data
+          if (res.status === 200) {
+            const data = res.data
+            data.forEach(item => {
+              if (item['expire_date']) {
+                item['expire_date'] = new Date(item['expire_date']).toLocaleString()
+              }
+            })
+            this.$refs.resultTable.tableData = data
           } else {
-            this.$message.error(res.data.message)
+            this.$message.error(res.data)
           }
         })
         .catch(err => {

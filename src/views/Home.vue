@@ -55,14 +55,6 @@ export default {
   width: 100vw;
 }
 
-.el-header {
-  border-bottom: 1px solid #5e6063;
-}
-
-.el-footer {
-  background-color: #b3c0d1;
-}
-
 .main-container-outer {
   height: 100%;
   background-color: #E9EEF3;

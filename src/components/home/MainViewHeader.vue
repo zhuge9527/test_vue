@@ -48,7 +48,6 @@ export default {
   },
   methods: {
     toView (url) {
-      debugger
       return this.$router.push(url)
     },
     goBack () {

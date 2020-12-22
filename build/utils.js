@@ -47,11 +47,11 @@ exports.cssLoaders = function (options) {
     if (options.extract) {
       return ExtractTextPlugin.extract({
         use: loaders,
-        publicPath: '../../',
+        publicPath: '../../', // 重写 loader 的 publicPath
         fallback: 'vue-style-loader'
       })
     } else {
-      return ['vue-style-loader'].concat(loaders)
+      return [{loader: 'vue-style-loader'}].concat(loaders)
     }
   }
 

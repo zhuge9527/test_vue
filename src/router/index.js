@@ -10,6 +10,7 @@ import PageB from '../views/test001/page002/PageB'
 import NavigateMainView from '../views/NavigateMainView'
 import SupplierSearchView from '../views/supplier/SupplierSearchView'
 import SupplierCreateView from '../views/supplier/SupplierCreateView'
+import EmployeeMaintainView from '../views/supplier/EmployeeMaintainView'
 
 Vue.use(Router)
 const specialRoutes = [{
@@ -99,6 +100,13 @@ const homeRoutes = [{
       text: '创建供应商'
     },
     component: SupplierCreateView
+  }, {
+    path: 'supplier/employee/maintain',
+    name: 'EmployeeMaintainView',
+    meta: {
+      text: '查询供应商人员'
+    },
+    component: EmployeeMaintainView
   }, {
     path: '*',
     name: '404',

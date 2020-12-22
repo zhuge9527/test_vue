@@ -17,7 +17,7 @@
       <el-dropdown>
         <el-badge  is-dot :value="12" :max="99" class="main-header-badge">
           <el-avatar size="large" :src="currentUserInfo.avatarPath">
-            <img src="/static/default-avatar.png" alt="load fail"/>
+            <img src="static/default-avatar.png" alt="load fail"/>
           </el-avatar>
         </el-badge>
         <el-dropdown-menu slot="dropdown">

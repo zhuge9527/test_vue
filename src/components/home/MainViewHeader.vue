@@ -14,8 +14,8 @@
       </template>
     </el-breadcrumb>
     <div class="main-header-avatar">
-      <el-dropdown>
-        <el-badge  is-dot :value="12" :max="99" class="main-header-badge">
+      <el-dropdown @command="handleCommand">
+        <el-badge is-dot :value="12" :max="99" class="main-header-badge">
           <el-avatar size="large" :src="currentUserInfo.avatarPath">
             <img src="static/default-avatar.png" alt="load fail"/>
           </el-avatar>
@@ -26,6 +26,7 @@
           <el-dropdown-item>权限申请</el-dropdown-item>
           <el-dropdown-item>通知设置</el-dropdown-item>
           <el-dropdown-item>版本公告</el-dropdown-item>
+          <el-dropdown-item command="loginOut">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -58,6 +59,15 @@ export default {
       let matched = this.$route.matched
       delete matched[matched.length - 1].path
       this.currentRoute = matched
+    },
+    handleCommand (command) {
+      if (command === 'loginOut') {
+        this.$axios.get('/server/loginOut').then(res => {
+          if (res && res.status === 200) {
+            this.$router.replace('/login')
+          }
+        })
+      }
     }
   },
   created () {
@@ -76,6 +86,7 @@ export default {
   position: absolute;
   right: 20px;
 }
+
 .main-header-badge {
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <el-main>
-    <el-form class="employee-form" model="criteria" label-width="80px" :height="100">
+    <el-form class="employee-form" :model="criteria" label-width="80px" :height="100">
       <el-form-item prop="name" label="姓名">
         <el-input v-model="criteria.name"/>
       </el-form-item>

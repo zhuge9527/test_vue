@@ -40,7 +40,7 @@ export default {
         children: [
           {index: '/search', menuText: '查询供应商资料'},
           {index: '/create', menuText: '创建供应商'},
-          {index: '/employee/search', menuText: '查询供应商人员'},
+          {index: '/employee/maintain', menuText: '查询供应商人员'},
           {index: '/truck/search', menuText: '查询供应商车辆'}
         ]
       }, {

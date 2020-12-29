@@ -53,7 +53,11 @@ new Vue({
         return res
       }
     }, err => {
-      vm.$message.error('服务器错误: ' + ((err && err.message) || '未知错误'))
+      if (err.response && err.response.data) {
+        vm.$message.error('服务器错误: ' + err.response.data)
+      } else {
+        vm.$message.error('服务器错误: ' + (err || err.message || '未知错误'))
+      }
       return Promise.reject(err)
     })
   }

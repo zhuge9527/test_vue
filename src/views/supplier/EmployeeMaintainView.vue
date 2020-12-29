@@ -61,6 +61,9 @@ export default {
 .employee-form > div {
   flex: 1;
 }
+.search-form-button-container > button:last-child {
+  margin-left: 40px;
+}
 
 .search-form-button-container {
   display: flex;

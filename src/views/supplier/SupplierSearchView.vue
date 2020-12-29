@@ -87,6 +87,9 @@ export default {
               if (item['expire_date']) {
                 item['expire_date'] = new Date(item['expire_date']).toLocaleString()
               }
+              if (item['dateOfRegistration']) {
+                item['dateOfRegistration'] = new Date(item['dateOfRegistration']).toLocaleString()
+              }
             })
             this.$refs.resultTable.tableData = data
           } else {

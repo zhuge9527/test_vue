@@ -74,7 +74,7 @@
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="供应商有效期">
+              <el-form-item label="有效期截止日期">
                 <el-date-picker
                   v-model="supplierData.effectiveTime"
                   style="width: 100%;"
@@ -191,6 +191,12 @@ export default {
           let startTime = this.supplierData.effectiveTime[0]
           let endTime = this.supplierData.effectiveTime[1]
           console.log(startTime, endTime)
+          this.$axios.post('/server/supplier', this.supplierData).then(result => {
+            if (result.status === 200) {
+              this.$message.success({message: '创建成功！', center: true})
+              this.resetData()
+            }
+          })
         } else {
           this.$message.error('表单中存在错误!请修改')
           return false

@@ -148,7 +148,7 @@ myRouter.beforeEach((to, from, next) => {
   if (location.href.indexOf('.html') > -1) {
     // debugger
     // location.replace('http://localhost:8080/singlepageview/Page1.html')
-    window.open('http://localhost:8080/singlepageview/Page1.html')
+    // window.open('http://localhost:8080/singlepageview/Page1.html')
   }
   next()
 })

@@ -11,21 +11,27 @@
       active-text-color="#ffd04b"
     >
       <el-container>
-        <el-button type='info' :style="minMenuButtonStyle" @click="minMenu"
+        <el-button type='info' :style="minMenuButtonStyle" @click="changeMenuSize"
                    style="background-color: rgb(84, 92, 100);">
-          {{buttonText}}
+          {{ buttonText }}
         </el-button>
       </el-container>
       <template v-for="route in routes">
         <template v-if="route.children && route.children.length > 0">
+          <!--          <el-tooltip :disabled="showTooltip" :key="route.index"-->
+          <!--                      class="item" effect="dark" :content="route.backupText" placement="top-start">-->
           <el-submenu :index="route.index" :key="route.index" class="el-submenu">
             <template slot="title"><i :class="route.iconClass"></i>{{ route.menuText }}</template>
             <template v-for="menuItem in route.children">
-              <el-menu-item :index="'/home' + route.index + menuItem.index" :key="menuItem.index" class="el-menu-item">
-                {{ menuItem.menuText }}
-              </el-menu-item>
+              <el-tooltip :disabled="showTooltip" :key="menuItem.index" :offset="-20" :visible-arrow="false"
+                          class="item" effect="dark" :content="menuItem.backupText" placement="bottom-start">
+                <el-menu-item :index="'/home' + route.index + menuItem.index" class="el-menu-item">
+                  {{ menuItem.menuText }}
+                </el-menu-item>
+              </el-tooltip>
             </template>
           </el-submenu>
+          <!--          </el-tooltip>-->
         </template>
         <template v-else>
           <el-menu-item :index="'/home' + route.index" :key="route.index" class="el-menu-item">
@@ -43,7 +49,6 @@ export default {
   name: 'Navigate',
   data: function () {
     return {
-      buttonText: minButtonText,
       menuWidth: maxWidth,
       routes: [{
         index: '/supplier',
@@ -85,6 +90,12 @@ export default {
     }
   },
   computed: {
+    showTooltip () {
+      return this.menuWidth !== minWidth
+    },
+    buttonText () {
+      return this.menuWidth !== minWidth ? minButtonText : maxButtonText
+    },
     minMenuButtonStyle () {
       let width = Number(this.menuWidth.replace('px', '')) - 1 + 'px'
       return {width: width}
@@ -102,13 +113,16 @@ export default {
       const title = arguments[2].$slots.default[0].text.trim()
       this.$emit('setCurrentViewTitle', title)
     },
-    minMenu () {
+    changeMenuSize () {
       function handlerText (routes, size) {
         routes.forEach(routeInfo => {
-          if (size === 'min') {
+          if (!routeInfo.backupText) {
             routeInfo.backupText = routeInfo.menuText
+          }
+          if (size === 'min') {
             delete routeInfo.menuText
-          } else if (size === 'max') {
+          }
+          if (size === 'max') {
             routeInfo.menuText = routeInfo.backupText
           }
           if (Array.isArray(routeInfo.children)) {
@@ -117,16 +131,19 @@ export default {
         })
       }
 
-      if (this.menuWidth === maxWidth) {
-        this.menuWidth = minWidth
-        this.buttonText = maxButtonText
-        handlerText(this.routes, 'min')
-      } else {
+      if (this.menuWidth === minWidth) {
+        // 放大
         this.menuWidth = maxWidth
-        this.buttonText = minButtonText
         handlerText(this.routes, 'max')
+      } else if (this.menuWidth === maxWidth) {
+        // 缩小
+        this.menuWidth = minWidth
+        handlerText(this.routes, 'min')
       }
     }
+  },
+  created () {
+    this.changeMenuSize()
   }
 }
 </script>

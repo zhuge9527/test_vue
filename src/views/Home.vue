@@ -1,9 +1,6 @@
 <template>
   <el-container id="home">
-    <el-aside width="220px">
-      <Menu class="menu" v-if="false"></Menu>
-      <Navigate @setCurrentViewTitle="setCurrentViewTitle"></Navigate>
-    </el-aside>
+    <home-menu @setCurrentViewTitle="setCurrentViewTitle"/>
     <el-container>
       <MainViewHeader/>
       <el-main>
@@ -20,14 +17,13 @@
 </template>
 
 <script>
-import Menu from './Menu'
 import MainContent from './Content'
-import Navigate from '../components/home/Navigate'
+import HomeMenu from '../components/home/Navigate'
 import MainViewHeader from '../components/home/MainViewHeader'
 
 export default {
   name: 'Home',
-  components: {Menu, MainContent, Navigate, MainViewHeader},
+  components: {MainContent, HomeMenu, MainViewHeader},
   data () {
     return {
       currentViewTitle: '<无>'

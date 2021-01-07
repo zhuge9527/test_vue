@@ -53,6 +53,10 @@ new Vue({
         return res
       }
     }, err => {
+      if (err.response.status === 504) {
+        vm.$router.push('/nav-view')
+        return Promise.resolve(err)
+      }
       if (err.response && err.response.data) {
         vm.$message.error('服务器错误: ' + err.response.data)
       } else {

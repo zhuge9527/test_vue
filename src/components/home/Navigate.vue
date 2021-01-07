@@ -1,38 +1,50 @@
 <template>
-  <el-menu
-    id="navigate-menu"
-    router
-    :default-active="currentActive"
-    @select="handleSelect"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
-  >
-    <template v-for="route in routes">
-      <template v-if="route.children && route.children.length > 0">
-        <el-submenu :index="route.index" :key="route.index" class="el-submenu">
-          <template slot="title"><i :class="route.iconClass"></i>{{ route.menuText }}</template>
-          <template v-for="menuItem in route.children">
-            <el-menu-item :index="'/home' + route.index + menuItem.index" :key="menuItem.index" class="el-menu-item">
-              {{ menuItem.menuText }}
-            </el-menu-item>
-          </template>
-        </el-submenu>
+  <el-aside :width="menuWidth">
+    <Menu class="menu" v-if="true"></Menu>
+    <el-menu
+      id="navigate-menu"
+      router
+      :default-active="currentActive"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+    >
+      <el-container>
+        <el-button type='info' :style="minMenuButtonStyle" @click="minMenu"
+                   style="background-color: rgb(84, 92, 100);">
+          {{buttonText}}
+        </el-button>
+      </el-container>
+      <template v-for="route in routes">
+        <template v-if="route.children && route.children.length > 0">
+          <el-submenu :index="route.index" :key="route.index" class="el-submenu">
+            <template slot="title"><i :class="route.iconClass"></i>{{ route.menuText }}</template>
+            <template v-for="menuItem in route.children">
+              <el-menu-item :index="'/home' + route.index + menuItem.index" :key="menuItem.index" class="el-menu-item">
+                {{ menuItem.menuText }}
+              </el-menu-item>
+            </template>
+          </el-submenu>
+        </template>
+        <template v-else>
+          <el-menu-item :index="'/home' + route.index" :key="route.index" class="el-menu-item">
+            <i :class="route.iconClass"></i>{{ route.menuText }}
+          </el-menu-item>
+        </template>
       </template>
-      <template v-else>
-        <el-menu-item :index="'/home' + route.index" :key="route.index" class="el-menu-item">
-          <i :class="route.iconClass"></i>{{ route.menuText }}
-        </el-menu-item>
-      </template>
-    </template>
-  </el-menu>
+    </el-menu>
+  </el-aside>
 </template>
 
 <script>
+const [minWidth, minButtonText, maxWidth, maxButtonText] = ['80px', '收缩菜单', '220px', '展开']
 export default {
   name: 'Navigate',
   data: function () {
     return {
+      buttonText: minButtonText,
+      menuWidth: maxWidth,
       routes: [{
         index: '/supplier',
         menuText: '供应商资料',
@@ -73,6 +85,10 @@ export default {
     }
   },
   computed: {
+    minMenuButtonStyle () {
+      let width = Number(this.menuWidth.replace('px', '')) - 1 + 'px'
+      return {width: width}
+    },
     currentActive () {
       if (this.$route.matched.length < 2 || this.$route.matched[1].name === '404') {
         return '/home/supplier/search'
@@ -85,6 +101,31 @@ export default {
       console.log('select element menu')
       const title = arguments[2].$slots.default[0].text.trim()
       this.$emit('setCurrentViewTitle', title)
+    },
+    minMenu () {
+      function handlerText (routes, size) {
+        routes.forEach(routeInfo => {
+          if (size === 'min') {
+            routeInfo.backupText = routeInfo.menuText
+            delete routeInfo.menuText
+          } else if (size === 'max') {
+            routeInfo.menuText = routeInfo.backupText
+          }
+          if (Array.isArray(routeInfo.children)) {
+            handlerText(routeInfo.children, size)
+          }
+        })
+      }
+
+      if (this.menuWidth === maxWidth) {
+        this.menuWidth = minWidth
+        this.buttonText = maxButtonText
+        handlerText(this.routes, 'min')
+      } else {
+        this.menuWidth = maxWidth
+        this.buttonText = minButtonText
+        handlerText(this.routes, 'max')
+      }
     }
   }
 }
@@ -93,6 +134,6 @@ export default {
 <style scoped>
 #navigate-menu {
   height: 100vh;
-  overflow: auto;
+  overflow: hidden;
 }
 </style>

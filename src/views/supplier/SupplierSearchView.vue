@@ -1,5 +1,5 @@
 <template>
-  <el-main class="main-container">
+  <div class="main-container">
     <supplier-search-form class="main-container-form" ref="searchForm" @submit="searchData"/>
     <supplier-search-table class="main-container-table" ref="resultTable"/>
     <el-form v-if="showOtherForm" style="display: none" ref="form" :model="form" label-width="80px">
@@ -46,7 +46,7 @@
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
-  </el-main>
+  </div>
 </template>
 
 <script>
@@ -109,5 +109,6 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
+  height: 100%;
 }
 </style>

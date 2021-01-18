@@ -3,7 +3,7 @@
     <el-row :gutter="20">
       <el-col :span="8">
         <el-form-item label="供应商名称">
-          <el-input v-model="criteriaVo.name"></el-input>
+          <el-input v-model="criteriaVo.name" clearable></el-input>
         </el-form-item>
       </el-col>
       <el-col :span="8">

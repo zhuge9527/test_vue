@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '../views/test000/HelloWorld'
 import Login from '../views/Login'
-import Home from '../views/Home'
+import Home from '../views/Layout'
 import Index from '../views/test001/Index'
 import Index2 from '../views/test002/Index2'
 import PageA from '../views/test001/page001/PageA'
@@ -11,6 +11,7 @@ import NavigateMainView from '../views/NavigateMainView'
 import SupplierSearchView from '../views/supplier/SupplierSearchView'
 import SupplierCreateView from '../views/supplier/SupplierCreateView'
 import EmployeeMaintainView from '../views/supplier/EmployeeMaintainView'
+import RouterInfo from '../store/index'
 
 Vue.use(Router)
 const specialRoutes = [{

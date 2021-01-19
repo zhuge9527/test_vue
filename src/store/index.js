@@ -28,15 +28,10 @@ export default new Vuex.Store({
       })
       if (existedPath !== false) {
         history.splice(existedPath, 1)
-        history.push(currentRoute)
-      } else {
-        if (length > 4) {
-          history.pop()
-          history.push(3, 0, currentRoute)
-        } else {
-          history.push(currentRoute)
-        }
+      } else if (length > 4) {
+        history.pop()
       }
+      history.push(currentRoute)
     }
   }
 })

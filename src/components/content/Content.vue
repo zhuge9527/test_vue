@@ -9,9 +9,11 @@ export default {
   name: 'Content',
   watch: {
     $route () {
-      debugger
       this.$store.commit('pushRouterHistory', this.$route)
     }
+  },
+  created () {
+    this.$store.commit('pushRouterHistory', this.$route)
   }
 }
 </script>

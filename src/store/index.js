@@ -18,12 +18,24 @@ export default new Vuex.Store({
       state.userInfo.username = username
     },
     pushRouterHistory (state, currentRoute) {
-      const length = state.routerInfo.history.length
-      if (length > 5) {
-        state.routerInfo.history.shift()
-        state.routerInfo.history.push(4, 0, currentRoute)
+      const history = state.routerInfo.history
+      const length = history.length
+      let existedPath = false
+      history.forEach((item, index) => {
+        if (item.path === currentRoute.path) {
+          existedPath = index
+        }
+      })
+      if (existedPath !== false) {
+        history.splice(existedPath, 1)
+        history.push(currentRoute)
       } else {
-        state.routerInfo.history.push(currentRoute)
+        if (length > 4) {
+          history.pop()
+          history.push(3, 0, currentRoute)
+        } else {
+          history.push(currentRoute)
+        }
       }
     }
   }

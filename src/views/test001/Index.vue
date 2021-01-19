@@ -144,11 +144,6 @@ export default {
     username () {
       return this.$store.state.userInfo.username
     }
-  },
-  watch: {
-    $route () {
-      // debugger
-    }
   }
 }
 </script>

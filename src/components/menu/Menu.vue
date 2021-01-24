@@ -142,7 +142,7 @@ export default {
     }
   },
   created () {
-    this.changeMenuSize()
+    // this.changeMenuSize()
   }
 }
 </script>

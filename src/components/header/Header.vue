@@ -89,6 +89,7 @@ export default {
 
 <style scoped>
 .header {
+  margin: 0 1rem;
   display: flex;
   align-items: center;
 }

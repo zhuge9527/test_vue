@@ -1,9 +1,8 @@
 <template>
-  <el-container direction="vertical">
+  <el-main>
     <ToolbarHeader>创建供应商</ToolbarHeader>
     <el-scrollbar :wrap-style="{'overflow': 'hidden'}">
-      <el-main>
-        <el-form
+        <el-form class="main-form"
           :ref="formName" :rules="rules" :model="supplierData" label-position="top" label-width="200px"
           size="medium" :status-icon="true">
           <el-row :gutter="20">
@@ -112,14 +111,13 @@
           <el-form-item label="备注">
             <el-input type="textarea" v-model="supplierData.remark" aria-placeholder="123"/>
           </el-form-item>
-        </el-form>
-      </el-main>
+  </el-form>
     </el-scrollbar>
     <ToolbarFooter>
       <el-button size="mini" @click="resetData">重置</el-button>
       <el-button size="mini" type="primary" @click="saveData">创建</el-button>
     </ToolbarFooter>
-  </el-container>
+  </el-main>
 </template>
 
 <script>
@@ -215,5 +213,8 @@ export default {
 <style scoped>
 /deep/ .el-scrollbar__wrap {
   overflow-x: hidden;
+}
+.main-form {
+  margin: 10px 10px 0 10px;
 }
 </style>

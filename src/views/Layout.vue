@@ -3,7 +3,7 @@
     <comp-menu @setCurrentViewTitle="setCurrentViewTitle"/>
     <el-container class="main-view-container">
       <comp-header/>
-      <comp-content/>
+      <router-view/>
       <comp-footer/>
     </el-container>
   </el-container>
@@ -12,12 +12,11 @@
 <script>
 import CompMenu from '../components/menu/Menu'
 import CompHeader from '../components/header/Header'
-import CompContent from '../components/content/Content'
 import CompFooter from '../components/footer/Footer'
 
 export default {
   name: 'Layout',
-  components: {CompMenu, CompHeader, CompContent, CompFooter},
+  components: {CompMenu, CompHeader, CompFooter},
   data () {
     return {
       currentViewTitle: '<无>'
@@ -35,6 +34,14 @@ export default {
     if (this.$route.matched.length < 2 || this.$route.matched[1].name === '404') {
       this.$router.push('/home/supplier/search')
     }
+  },
+  watch: {
+    $route () {
+      this.$store.commit('pushRouterHistory', this.$route)
+    }
+  },
+  created () {
+    this.$store.commit('pushRouterHistory', this.$route)
   }
 }
 </script>
@@ -47,5 +54,13 @@ export default {
 
 .main-view-container {
   flex-direction: column;
+}
+.main-view-container > .el-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  height: 100%;
+  margin: 0 1rem;
+  background-color: #E9EEF3;
 }
 </style>

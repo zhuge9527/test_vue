@@ -1,8 +1,8 @@
 <template>
-  <div class="main-container">
+  <el-main>
     <supplier-search-form class="main-container-form" ref="searchForm" @submit="searchData"/>
     <supplier-search-table class="main-container-table" ref="resultTable"/>
-  </div>
+  </el-main>
 </template>
 
 <script>
@@ -42,10 +42,5 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  height: 100%;
-}
+
 </style>
